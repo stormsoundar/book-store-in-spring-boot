@@ -1,0 +1,15 @@
+server.port: 9091
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_store_db?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+
+
+
+
+
+
+
+

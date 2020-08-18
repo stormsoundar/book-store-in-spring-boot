@@ -17,21 +17,6 @@ public class BookController {
     private BookService bookService;
     private Set<Integer> yop;
 
-//    @RequestMapping(value = "/books", method = RequestMethod.GET)
-//    public List<Book> getBooks() {
-//        return bookService.getBooks();
-//    }
-    // Filter one resource using query param
-//    @RequestMapping(value = "/books", method = RequestMethod.GET)
-//    public List<Book> getBooks(@RequestParam(value = "yearOfPublication", required = false) Integer yop) {
-//        return bookService.getBooks(yop);
-//    }
-
-    // Filter many resource using query param
-//    @RequestMapping(value = "/books", method = RequestMethod.GET)
-//    public List<Book> getBooks(@RequestParam(value = "yearOfPublications", required = false) Set<Integer> yop) {
-//        return bookService.getBooks(yop);
-//    }
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public List<Book> getBooks(
             @RequestParam(value = "yearOfPublications", required = false) Set<Integer> yop,
@@ -44,18 +29,12 @@ public class BookController {
         return bookService.createBook(book);
     }
 
-//    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-//    public Optional<Book> getBookById(@PathVariable("id") Long bookId) {
-//        return bookService.getBookById(bookId);
-//    }
-
     @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
     public BookDTO getBookById(
             @PathVariable("id") Long bookId,
             @RequestParam(value = "authorData", required = false) boolean authorData)
     {
         return bookService.getBookById(bookId, authorData);
-//        return bookService.getBookById(bookId);
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
@@ -69,10 +48,6 @@ public class BookController {
     }
 
     @GetMapping("/raw/books")
-//    public List<Book> getBooksByRawQuery(@RequestParam(value = "yop") Set<Integer> yop) {
-//        this.yop = yop;
-//        return bookService.getBooksByRawQuery(yop);
-//    }
     public APIResponse getBooksByRawQuery(@RequestParam(value = "yop") Set<Integer> yop) {
         this.yop = yop;
         return bookService.getBooksByRawQuery(yop);

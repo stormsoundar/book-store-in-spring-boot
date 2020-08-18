@@ -22,43 +22,8 @@ public class BookService {
 
     @Autowired
     private BookAuthorRepository bookAuthorRepository;
+    
     // Read - GET
-//    public List<Book> getBooks() {
-//
-//        List<Book> bookList = new ArrayList<>();
-//
-//        bookRepository.findAll()
-//                .forEach(book -> bookList.add(book));
-//
-//        return bookList;
-//    }
-
-//    public List<Book> getBooks(Integer yop) {
-//
-//        List<Book> bookList = new ArrayList<>();
-//
-//        if(yop == null) {
-//            bookRepository.findAll()
-//                    .forEach(book -> bookList.add(book));
-//        } else {
-//           return bookRepository.findAllByYearOfPublication(yop);
-//        }
-//        return bookList;
-//    }
-
-//    public List<Book> getBooks(Set<Integer> yop) {
-//
-//        List<Book> bookList = new ArrayList<>();
-//
-//        if(yop == null) {
-//            bookRepository.findAll()
-//                    .forEach(book -> bookList.add(book));
-//        } else {
-//            return bookRepository.findAllByYearOfPublicationIn(yop);
-//        }
-//        return bookList;
-//    }
-
     public List<Book> getBooks(Set<Integer> yop, String bookType) {
 
         List<Book> bookList = new ArrayList<>();
@@ -73,16 +38,11 @@ public class BookService {
     }
 
     // Create - POST
-    public Book createBook(Book book) {
-        // validate
-        // return bookRepository.save(book);
+    public Book createBook(Book book) {        
         return bookRepository.save(book);
     }
 
     // Get Single Resource - Get One
-//    public Optional<Book> getBookById(Long book) {
-//        return bookRepository.findById(book);
-//    }
     public BookDTO getBookById(Long bookId, boolean authorData) {
 
         Book books;
@@ -134,28 +94,16 @@ public class BookService {
     }
 
     // Raw Query - get Books
-//    public List<Book> getBooksByRawQuery(Set<Integer> yop) {
-////        List<Book> bookRepository.getBookByYop(yop);
-//        List<Book> bookList = bookRepository.findAllByYearOfPublicationIn(yop);
-//        return bookList;
-//    }
         public APIResponse getBooksByRawQuery(Set<Integer> yop) {
-    //        List<Book> bookRepository.getBookByYop(yop);
             APIResponse apiResponse = new APIResponse();
 
             // db call
             List<Book> bookList = bookRepository.findAllByYearOfPublicationIn(yop);
 
-//            Map data = new HashMap();
-//            data.put("books", bookList);
 
             // set data
             BookData bookData = new BookData();
             bookData.setBooks(bookList);
-
-//            bookData.setBook();
-            // set api response
-//            apiResponse.setData(bookList);
             apiResponse.setError(300);
             apiResponse.setData(bookData);
 
